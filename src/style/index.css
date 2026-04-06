@@ -1,9 +1,6 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
-@import "tailwindcss/preflight";
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
