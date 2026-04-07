@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 
 import { Card } from '@/components/ui/card'
 import { featuredItems, programs } from '@/constants'
+import { Link } from 'react-router-dom'
 
 const Home = () => (
 	<>
@@ -15,12 +16,15 @@ const Home = () => (
 					Voluptas ipsum dolor sit amet consectetur adipisicing elit. Suscipit
 					repellendus facilis aperiam possimus quam sed fuga.
 				</p>
-				<Button
-					className='h-12 mt-6 font-bold bg-background w-fit'
-					variant={'outline'}
-				>
-					Join club now
-				</Button>
+				<Link to={'/auth'}>
+					<Button
+						className='h-12 mt-6 font-bold bg-background w-fit'
+						variant={'outline'}
+					>
+						Join club now
+					</Button>
+				</Link>
+
 				<div className='mt-24'>
 					<p className='text-muted-foreground'>AS FEATURED IN</p>
 					<div className='flex items-center gap-4 mt-2'>
@@ -49,6 +53,7 @@ const Home = () => (
 						<p className='mt-2 text-sm text-muted-foreground'>
 							{item.description}
 						</p>
+
 						<Button
 							size={'icon'}
 							variant={'ghost'}
