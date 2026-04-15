@@ -109,7 +109,7 @@ src/
 
 ## 🌐 Live Demo
 
-**[gym-gymers.vercel.app](https://gym-gymers.vercel.app)** — deployed on Vercel, powered by Firebase.
+**[gym-gymers.vercel.app](https://gym-gymers.vercel.app)** — (Not yet done it. working on) deployed on Vercel, powered by Firebase.
 
 ---
 
