@@ -39,5 +39,5 @@ export const programs = [
 ]
 export const navLinks=[
   {Label:'Home',path:'#home'},
-  {Label:'Programs',path:'#programs'}
+  {Label:'Programs',path:'/programs'}
 ]

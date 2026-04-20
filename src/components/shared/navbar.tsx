@@ -5,20 +5,20 @@ import { ModeToggle } from './mode-toggle'
 
 const Navbar = () => {
 	return (
-		<div className='w-full h-[10vh] shadow-sm  fixed inset-0 z-50 bg-background'>
+		<div className='w-full h-[10vh] shadow-sm fixed inset-0 z-50 bg-background'>
 			<div className='container flex items-center justify-between h-full max-w-6xl mx-auto'>
 				<Link to={'/'}>
 					<h1 className='text-2xl font-bold uppercase'>workout</h1>
 				</Link>
 				<div className='flex items-center gap-3'>
 					{navLinks.map(link => (
-						<a
+						<Link
 							key={link.path}
-							href={link.path}
+							to={link.path} // ← href → to
 							className='font-bold hover:underline'
 						>
 							{link.Label}
-						</a>
+						</Link>
 					))}
 					<ModeToggle />
 					<Link to={'/auth'}>
