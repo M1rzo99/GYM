@@ -44,7 +44,7 @@ const Home = () => (
 
 			{/* IMAGE */}
 			<div className='w-full md:w-1/2 h-[250px] md:h-screen'>
-				<img src={gymGr} className='object-cover w-full h-full' />
+				<img src={gymGr} className='object-cover w-full h-full' alt='Gym' />
 			</div>
 		</div>
 
