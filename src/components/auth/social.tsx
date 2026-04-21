@@ -6,15 +6,18 @@ const Social = () => {
 	return (
 		<>
 			<Separator />
-			<div className='grid grid-cols-2 gap-2'>
-				<Button className='h-14' variant={'secondary'}>
+			<div className='grid grid-cols-1 gap-2 xl:grid-cols-2'>
+				<Button
+					className='flex items-center justify-center gap-2 h-14'
+					variant={'secondary'}
+				>
 					<FaGithub />
-					<span>Sign in with GitHub</span>
+					<span className='hidden xl:inline'>Sign in with GitHub</span>
 				</Button>
 
-				<Button className='bg-red-800 h-14'>
+				<Button className='flex items-center justify-center gap-2 bg-red-800 h-14'>
 					<FaGoogle />
-					<span>Sign in with Google</span>
+					<span className='hidden xl:inline'>Sign in with Google</span>
 				</Button>
 			</div>
 		</>

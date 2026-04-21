@@ -15,19 +15,19 @@ import {
 import { Input } from '../ui/input'
 import { Separator } from '../ui/separator'
 
-type RegisterFormValues = z.infer<typeof registerSchema>
-
 const Register = () => {
 	const { setAuth } = useAuthState()
 
-	const form = useForm<RegisterFormValues>({
+	const form = useForm<z.infer<typeof registerSchema>>({
 		resolver: zodResolver(registerSchema),
-		defaultValues: { email: '', password: '', confirmPassword: '' },
+		defaultValues: {
+			email: '',
+			password: '',
+		},
 	})
 
-	const onSubmit = async (values: RegisterFormValues) => {
-		console.log(values)
-		// API chaqiruv shu yerda
+	const onSubmit = async (values: z.infer<typeof registerSchema>) => {
+		const { email, password } = values
 	}
 
 	return (
@@ -63,7 +63,7 @@ const Register = () => {
 					)}
 				/>
 
-				<div className='grid grid-cols-2 gap-4 mt-4'>
+				<div className='grid grid-cols-1 gap-4 mt-4 xl:grid-cols-2'>
 					<FormField
 						control={form.control}
 						name='password'
