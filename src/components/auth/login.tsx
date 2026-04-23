@@ -1,11 +1,13 @@
-import { useAuthState } from '@/store/auth.store'
-import { Button } from '../ui/button'
-import { Input } from '../ui/input'
-import { Separator } from '../ui/separator'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { auth } from '@/firebase'
 import { loginSchema } from '@/lib/validation'
+import { useAuthState } from '@/store/auth.store'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
+import { Button } from '../ui/button'
 import {
 	Form,
 	FormControl,
@@ -14,18 +16,35 @@ import {
 	FormLabel,
 	FormMessage,
 } from '../ui/form'
+import { Input } from '../ui/input'
+import { Separator } from '../ui/separator'
 
 const Login = () => {
+	const [isLoading, setIsLoading] = useState(false)
+	const [error, setError] = useState('')
 	const { setAuth } = useAuthState()
+	const navigate = useNavigate()
 
 	const form = useForm<z.infer<typeof loginSchema>>({
 		resolver: zodResolver(loginSchema),
-		defaultValues: { email: '', password: '' },
+		defaultValues: {
+			email: '',
+			password: '',
+		},
 	})
 
 	const onSubmit = async (values: z.infer<typeof loginSchema>) => {
-		console.log(values)
-		// API chaqiruv shu yerda
+		const { email, password } = values
+		setIsLoading(true)
+		try {
+			const res = await signInWithEmailAndPassword(auth, email, password)
+			navigate('/')
+		} catch (error) {
+			const result = error as Error
+			setError(result.message)
+		} finally {
+			setIsLoading(false)
+		}
 	}
 
 	return (
@@ -53,6 +72,7 @@ const Login = () => {
 								<Input
 									placeholder='example@gmail.com'
 									type='email'
+									disabled={isLoading}
 									{...field}
 								/>
 							</FormControl>
@@ -68,14 +88,19 @@ const Login = () => {
 						<FormItem className='mt-4'>
 							<FormLabel>Password</FormLabel>
 							<FormControl>
-								<Input placeholder='********' type='password' {...field} />
+								<Input
+									placeholder='********'
+									type='password'
+									{...field}
+									disabled={isLoading}
+								/>
 							</FormControl>
 							<FormMessage />
 						</FormItem>
 					)}
 				/>
 
-				<Button type='submit' className='w-full h-12 mt-4'>
+				<Button type='submit' className='w-full h-12 mt-4' disabled={isLoading}>
 					Login
 				</Button>
 			</form>

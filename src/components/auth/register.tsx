@@ -1,7 +1,11 @@
+import { auth } from '@/firebase'
 import { registerSchema } from '@/lib/validation'
 import { useAuthState } from '@/store/auth.store'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 import { Button } from '../ui/button'
 import {
@@ -16,7 +20,10 @@ import { Input } from '../ui/input'
 import { Separator } from '../ui/separator'
 
 const Register = () => {
+	const [isLoading, setIsLoading] = useState(false)
+	const [error, setError] = useState('')
 	const { setAuth } = useAuthState()
+	const navigate = useNavigate()
 
 	const form = useForm<z.infer<typeof registerSchema>>({
 		resolver: zodResolver(registerSchema),
@@ -28,6 +35,16 @@ const Register = () => {
 
 	const onSubmit = async (values: z.infer<typeof registerSchema>) => {
 		const { email, password } = values
+		setIsLoading(true)
+		try {
+			const res = await createUserWithEmailAndPassword(auth, email, password)
+			navigate('/')
+		} catch (error) {
+			const result = error as Error
+			setError(result.message)
+		} finally {
+			setIsLoading(false)
+		}
 	}
 
 	return (
@@ -44,6 +61,11 @@ const Register = () => {
 					</span>
 				</p>
 				<Separator className='my-3' />
+				{error && (
+					<p className='mt-2 text-sm text-red-500' role='alert'>
+						{error}
+					</p>
+				)}
 
 				<FormField
 					control={form.control}
@@ -55,6 +77,7 @@ const Register = () => {
 								<Input
 									placeholder='example@gmail.com'
 									type='email'
+									disabled={isLoading}
 									{...field}
 								/>
 							</FormControl>
@@ -71,7 +94,12 @@ const Register = () => {
 							<FormItem>
 								<FormLabel>Password</FormLabel>
 								<FormControl>
-									<Input placeholder='********' type='password' {...field} />
+									<Input
+										placeholder='********'
+										type='password'
+										{...field}
+										disabled={isLoading}
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -85,7 +113,12 @@ const Register = () => {
 							<FormItem>
 								<FormLabel>Confirm Password</FormLabel>
 								<FormControl>
-									<Input placeholder='********' type='password' {...field} />
+									<Input
+										placeholder='********'
+										type='password'
+										{...field}
+										disabled={isLoading}
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
