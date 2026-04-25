@@ -1,12 +1,15 @@
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { auth } from '@/firebase'
 import { registerSchema } from '@/lib/validation'
 import { useAuthState } from '@/store/auth.store'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { AlertCircleIcon } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
+import FillLoading from '../shared/fill-loading'
 import { Button } from '../ui/button'
 import {
 	Form,
@@ -50,6 +53,7 @@ const Register = () => {
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col'>
+				<FillLoading />
 				<h2 className='text-xl font-bold'>Register</h2>
 				<p className='text-muted-foreground'>
 					Already have an account?{' '}
@@ -61,10 +65,17 @@ const Register = () => {
 					</span>
 				</p>
 				<Separator className='my-3' />
+
 				{error && (
-					<p className='mt-2 text-sm text-red-500' role='alert'>
-						{error}
-					</p>
+					<Alert variant='destructive' className='max-w-md'>
+						<div className='flex items-center gap-2'>
+							<AlertCircleIcon className='w-4 h-4' />
+							<AlertTitle className='mb-0'>Error</AlertTitle>
+						</div>
+						<AlertDescription className='text-color-500'>
+							{error}
+						</AlertDescription>
+					</Alert>
 				)}
 
 				<FormField
@@ -72,6 +83,7 @@ const Register = () => {
 					name='email'
 					render={({ field }) => (
 						<FormItem>
+							{' '}
 							<FormLabel>Email</FormLabel>
 							<FormControl>
 								<Input

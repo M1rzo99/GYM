@@ -1,12 +1,15 @@
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { auth } from '@/firebase'
 import { loginSchema } from '@/lib/validation'
 import { useAuthState } from '@/store/auth.store'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { signInWithEmailAndPassword } from 'firebase/auth'
+import { AlertCircleIcon } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
+import FillLoading from '../shared/fill-loading'
 import { Button } from '../ui/button'
 import {
 	Form,
@@ -50,6 +53,7 @@ const Login = () => {
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col'>
+				{isLoading && <FillLoading />}
 				<h2 className='text-xl font-bold'>Login</h2>
 				<p className='text-muted-foreground'>
 					Don't have any account?{' '}
@@ -61,6 +65,17 @@ const Login = () => {
 					</span>
 				</p>
 				<Separator className='my-3' />
+				{error && (
+					<Alert variant='destructive' className='max-w-md'>
+						<div className='flex items-center gap-2'>
+							<AlertCircleIcon className='w-4 h-4' />
+							<AlertTitle className='mb-0'>Error</AlertTitle>
+						</div>
+						<AlertDescription className='text-color-500'>
+							{error}
+						</AlertDescription>
+					</Alert>
+				)}
 
 				<FormField
 					control={form.control}
