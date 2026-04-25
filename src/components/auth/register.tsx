@@ -53,7 +53,7 @@ const Register = () => {
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col'>
-				<FillLoading />
+				{isLoading && <FillLoading />}
 				<h2 className='text-xl font-bold'>Register</h2>
 				<p className='text-muted-foreground'>
 					Already have an account?{' '}
