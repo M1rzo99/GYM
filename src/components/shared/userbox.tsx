@@ -32,9 +32,11 @@ const UserBox = () => {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Avatar className='cursor-pointer'>
+				<Avatar className='cursor-pointer '>
 					<AvatarImage src={user.photoURL!} />
-					<AvatarFallback>{user.email![0]}</AvatarFallback>
+					<AvatarFallback className='uppercase'>
+						{user.email![0]}
+					</AvatarFallback>
 					<AvatarBadge className='bg-green-600 dark:bg-green-800' />
 				</Avatar>
 			</DropdownMenuTrigger>
@@ -52,7 +54,9 @@ const UserBox = () => {
 						<div className='p-1 rounded-md bg-secondary'>
 							<Avatar>
 								<AvatarImage src={user.photoURL!} />
-								<AvatarFallback>{user.email![0]}</AvatarFallback>
+								<AvatarFallback className='uppercase'>
+									{user.email![0]}
+								</AvatarFallback>
 								<AvatarBadge className='bg-green-600 dark:bg-green-800' />
 							</Avatar>
 						</div>
@@ -65,13 +69,18 @@ const UserBox = () => {
 				</div>
 				<DropdownMenuSeparator />
 				<DropdownMenuGroup>
-					<DropdownMenuItem className='cursor-pointer' onClick={onLogout}>
+					<DropdownMenuItem
+						className='border-none cursor-pointer'
+						onClick={() => navigate('/gym')}
+					>
 						<TbGymnastics className='w-4 h-4 mr-2' />
 						<span>GYM</span>
 					</DropdownMenuItem>
-				</DropdownMenuGroup>
-				<DropdownMenuGroup className=''>
-					<DropdownMenuItem className='cursor-pointer' onClick={onLogout}>
+
+					<DropdownMenuItem
+						className='cursor-pointer  bg-destructive'
+						onClick={onLogout}
+					>
 						<LogOut className='w-4 h-4 mr-2' />
 						<span>Logout</span>
 					</DropdownMenuItem>
