@@ -22,6 +22,7 @@ const Social = () => {
 			.then(() => {
 				navigate('/')
 			})
+
 			.finally(() => {
 				setIsLoading(false)
 			})
@@ -34,6 +35,7 @@ const Social = () => {
 			.then(() => {
 				navigate('/')
 			})
+
 			.finally(() => {
 				setIsLoading(false)
 			})

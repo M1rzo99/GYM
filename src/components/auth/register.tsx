@@ -33,6 +33,7 @@ const Register = () => {
 		defaultValues: {
 			email: '',
 			password: '',
+			confirmPassword: '',
 		},
 	})
 
@@ -72,9 +73,7 @@ const Register = () => {
 							<AlertCircleIcon className='w-4 h-4' />
 							<AlertTitle className='mb-0'>Error</AlertTitle>
 						</div>
-						<AlertDescription className='text-color-500'>
-							{error}
-						</AlertDescription>
+						<AlertDescription>{error}</AlertDescription>
 					</Alert>
 				)}
 
