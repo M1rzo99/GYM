@@ -70,15 +70,15 @@ const UserBox = () => {
 				<DropdownMenuSeparator />
 				<DropdownMenuGroup>
 					<DropdownMenuItem
-						className='border-none cursor-pointer'
-						onClick={() => navigate('/gym')}
+						className='mb-1 bg-gray-300 border-none cursor-pointer'
+						onClick={() => navigate('/dashboard')}
 					>
 						<TbGymnastics className='w-4 h-4 mr-2' />
 						<span>GYM</span>
 					</DropdownMenuItem>
 
 					<DropdownMenuItem
-						className='cursor-pointer  bg-destructive'
+						className='cursor-pointer bg-destructive'
 						onClick={onLogout}
 					>
 						<LogOut className='w-4 h-4 mr-2' />

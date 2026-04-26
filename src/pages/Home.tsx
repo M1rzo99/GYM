@@ -69,7 +69,7 @@ const Home = () => {
 						</div>
 					</div>
 				</div>
-				<img src={gymGr} className='object-cover w-1/2' />
+				<img src={gymGr} alt='Gym workout' className='object-cover w-1/2' />
 			</div>
 
 			<div className='container '>
