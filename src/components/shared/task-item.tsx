@@ -10,21 +10,21 @@ const TaskItem = () => {
 		<Card className='relative grid items-center w-full grid-cols-4 p-4 shadow-md'>
 			<div className='flex items-center col-span-2 gap-1'>
 				<MdOutlineTaskAlt className='w-8 h-8 text-blue-500' />
-				<span className='capitalize'>Tasksfsdfsfsfsfdsfs Name</span>
+				<span className='capitalize'>Tasks Name</span>
 			</div>
 			<div className='flex items-center gap-1'>
 				<HiStatusOnline className='text-blue-500' />
 				<span className='capitalize'>In Progress</span>
 			</div>
-			<div className='flex items-center gap-1 justify-self-end'>
-				<Button variant={'ghost'} size={'icon'} className='w-8 h-8'>
-					<CiPlay1 className='w-5 h-5 text-indigo-500' />
+			<div className='flex items-center gap-2 '>
+				<Button variant={'default'} size={'icon'} className='w-8 h-8'>
+					<CiPlay1 className='w-8 h-8' />
 				</Button>
 				<Button variant={'secondary'} size={'icon'} className='w-8 h-8 '>
-					<Edit2 className='w-5 h-5' />
+					<Edit2 className='w-8 h-8' />
 				</Button>
 				<Button variant={'destructive'} size={'icon'} className='w-8 h-8'>
-					<Trash className='w-5 h-5' />
+					<Trash className='w-8 h-8' />
 				</Button>
 			</div>
 		</Card>

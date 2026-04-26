@@ -2,6 +2,7 @@ import { navLinks } from '@/constants'
 import { useUserState } from '@/store/user.store'
 import { Link } from 'react-router-dom'
 import { Button } from '../ui/button'
+import { Separator } from '../ui/separator'
 import { ModeToggle } from './mode-toggle'
 import UserBox from './userbox'
 
@@ -39,6 +40,7 @@ const Navbar = () => {
 					)}
 				</div>
 			</div>
+			<Separator className='bg-white/40 h-[1px] container' />
 		</div>
 	)
 }

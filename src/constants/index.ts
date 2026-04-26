@@ -38,6 +38,6 @@ export const programs = [
 }
 ]
 export const navLinks=[
-  {Label:'Home',path:'#home'},
-  {Label:'Programs',path:'/programs'}
+  {Label:'Home',path:'/'},
+  {Label:'GYM',path:'/dashboard'}
 ]

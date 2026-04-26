@@ -1,6 +1,5 @@
 import gymGr from '@/assets/gymGr.jpg'
 import { Button } from '@/components/ui/button'
-
 import { Card } from '@/components/ui/card'
 import { featuredItems, programs } from '@/constants'
 import { auth } from '@/firebase'
