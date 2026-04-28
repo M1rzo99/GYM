@@ -17,6 +17,7 @@ import { TaskService } from '@/service/task.service'
 import { useUserState } from '@/store/user.store'
 import { ITask } from '@/types'
 import { useQuery } from '@tanstack/react-query'
+import { addMilliseconds, addMinutes, format } from 'date-fns'
 import {
 	addDoc,
 	collection,
@@ -85,6 +86,14 @@ const Dashboard = () => {
 		setIsEditing(true)
 		setCurrentTask(task)
 	}
+	const formatDate = (time: number) => {
+		const date = addMilliseconds(new Date(0), time)
+		const formattedDate = format(
+			addMinutes(date, date.getTimezoneOffset()),
+			'HH:mm:ss'
+		)
+		return formattedDate
+	}
 	return (
 		<>
 			<div className='flex items-center h-screen max-w-6xl gap-5 mx-auto'>
@@ -143,15 +152,45 @@ const Dashboard = () => {
 				<div className='flex flex-col w-full space-y-3 '>
 					<div className='relative h-24 p-4 rounded-md bg-gradient-to-r from-blue-900 to-background'>
 						<div className='text-2xl font-bold'>Total week</div>
-						<div className='text-3xl font-bold'>02:01:21</div>
+						{isPending ? (
+							<FillLoading />
+						) : (
+							data && (
+								<>
+									<div className='text-3xl font-bold'>
+										{formatDate(data.weekTotal)}
+									</div>
+								</>
+							)
+						)}
 					</div>
 					<div className='relative h-24 p-4 rounded-md bg-gradient-to-r from-purple-900 to-background'>
 						<div className='text-2xl font-bold'>Total month</div>
-						<div className='text-3xl font-bold'>08:05:43</div>
+						{isPending ? (
+							<FillLoading />
+						) : (
+							data && (
+								<>
+									<div className='text-3xl font-bold'>
+										{formatDate(data.monthTotal)}
+									</div>
+								</>
+							)
+						)}
 					</div>
 					<div className='relative h-24 p-4 rounded-md bg-gradient-to-r from-red-900 to-background'>
-						<div className='text-2xl font-bold'>Total year</div>
-						<div className='text-3xl font-bold'>1d 2h 3m</div>
+						<div className='text-2xl font-bold'>Total Time</div>
+						{isPending ? (
+							<FillLoading />
+						) : (
+							data && (
+								<>
+									<div className='text-3xl font-bold'>
+										{formatDate(data.total)}
+									</div>
+								</>
+							)
+						)}
 					</div>
 				</div>
 			</div>
