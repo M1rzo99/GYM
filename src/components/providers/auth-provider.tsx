@@ -9,7 +9,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 	useEffect(() => {
 		auth.onAuthStateChanged(user => {
-			user && setUser(user)
+			setUser(user ?? null)
 			setIsLoading(false)
 		})
 	}, [])

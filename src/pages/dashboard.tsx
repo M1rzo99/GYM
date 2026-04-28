@@ -31,7 +31,7 @@ import { toast } from 'sonner'
 import z from 'zod'
 
 const Dashboard = () => {
-	const [isDelete, setIsDelete] = useState(false)
+	const [IsDelete, setIsDelete] = useState(false)
 	const { user } = useUserState()
 	const [open, setOpen] = useState(false)
 	const [isEditing, setIsEditing] = useState(false)
@@ -96,7 +96,7 @@ const Dashboard = () => {
 	}
 	return (
 		<>
-			<div className='flex items-center h-screen max-w-6xl gap-5 mx-auto'>
+			<div className='flex flex-col items-start max-w-6xl max-md:px-6 max-md:pt-[8vh] min-h-screen gap-5 p-4 mx-auto lg:flex-row lg:items-center'>
 				<div className='grid w-full grid-cols-1 gap-8'>
 					<div className='flex flex-col space-y-3'>
 						<div className='flex justify-between w-full p-4 rounded-md bg-gradient-to-t from-background to-secondary'>
@@ -107,7 +107,7 @@ const Dashboard = () => {
 						</div>
 						<Separator />
 						<div className='relative flex justify-between w-full p-4 rounded-md bg-gradient-to-b from-background to-secondary min-h-60'>
-							{isPending && <FillLoading />}
+							{(isPending || IsDelete) && <FillLoading />}
 							{error && (
 								<Alert variant='destructive' className='max-w-md'>
 									<div className='flex items-center gap-2'>
