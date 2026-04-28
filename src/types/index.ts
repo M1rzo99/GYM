@@ -15,4 +15,4 @@ export interface ITask{
     status:ITaskStatus
 }
 
-export type ITaskStatus = 'unstarted' | 'in-progress' | 'completed'
+export type ITaskStatus = 'unstarted' | 'in_progress' | 'paused'

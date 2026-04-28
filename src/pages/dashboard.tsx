@@ -116,6 +116,7 @@ const Dashboard = () => {
 									{!isEditing &&
 										data.tasks.map(task => (
 											<TaskItem
+												refetch={refetch}
 												task={task}
 												key={task.id}
 												onStartEditing={() => onStartEditing(task)}
